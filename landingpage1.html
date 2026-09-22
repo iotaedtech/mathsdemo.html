@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ones &amp; Tens Workshop — iOTA Maths Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1E2749;
+    --ink-soft:#3A4256;
+    --amber:#F4A825;
+    --amber-deep:#D98E12;
+    --coral:#E85D4C;
+    --sky:#EAF1FB;
+    --paper:#FFFDF9;
+    --line:#E4DFD3;
+    --white:#FFFFFF;
+    --radius-block:4px;
+    --radius-card:20px;
+    --radius-pill:999px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Manrope',sans-serif;
+    color:var(--ink-soft);
+    background:var(--paper);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces',serif;
+    color:var(--ink);
+    margin:0;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img,svg{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:3px solid var(--coral);outline-offset:3px;}
+
+  /* ---------- Nav ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,253,249,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 32px;max-width:var(--maxw);margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .brand-word{display:flex;flex-direction:column;line-height:1.1;}
+  .brand-word b{font-family:'Fraunces',serif;font-weight:600;font-size:19px;color:var(--ink);}
+  .brand-word span{font-size:10.5px;letter-spacing:0.09em;color:var(--amber-deep);font-weight:700;}
+  nav.links{display:flex;gap:30px;font-size:14.5px;font-weight:600;}
+  nav.links a{text-decoration:none;color:var(--ink-soft);border-bottom:2px solid transparent;padding-bottom:2px;}
+  nav.links a:hover{color:var(--ink);border-color:var(--amber);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 24px;border-radius:var(--radius-pill);
+    font-weight:700;font-size:14.5px;text-decoration:none;
+    border:2px solid transparent;cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary{background:var(--coral);color:var(--white);box-shadow:0 6px 18px rgba(232,93,76,0.35);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(232,93,76,0.4);}
+  .btn-ghost{background:transparent;border-color:var(--ink);color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--white);}
+  .btn-small{padding:9px 18px;font-size:13.5px;}
+  @media (max-width:860px){ nav.links{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:72px 0 56px;}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;}
+  .hook{font-size:clamp(32px,4vw,46px);line-height:1.15;}
+  .hook em{font-style:normal;color:var(--coral);}
+  .lede{margin-top:20px;font-size:17.5px;max-width:46ch;color:var(--ink-soft);}
+  .meta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;}
+  .pill{
+    display:flex;align-items:center;gap:8px;
+    background:var(--sky);border:1px solid #D6E3F7;
+    padding:9px 16px;border-radius:var(--radius-pill);
+    font-size:14px;font-weight:700;color:var(--ink);
+  }
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--coral);}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;align-items:center;}
+  .countdown{margin-top:18px;font-size:13.5px;color:var(--amber-deep);font-weight:700;}
+
+  /* hero illustration: base-10 blocks forming 24 */
+  .illustration{position:relative;}
+  .block-caption{
+    display:flex;justify-content:center;gap:38px;margin-top:14px;
+    font-size:13px;font-weight:700;color:var(--ink-soft);
+  }
+  .block-caption span.k{color:var(--ink);}
+  .swatch{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:middle;}
+
+  /* ---------- Section shell ---------- */
+  section{padding:76px 0;}
+  .section-alt{background:var(--sky);}
+  .kicker{font-size:14px;font-weight:700;color:var(--coral);margin-bottom:10px;}
+  .section-head{max-width:640px;margin-bottom:44px;}
+  .section-head h2{font-size:clamp(26px,3vw,34px);line-height:1.25;}
+  .section-head p{margin-top:14px;font-size:16px;}
+
+  /* ---------- Why it matters ---------- */
+  .why-grid{display:grid;grid-template-columns:0.95fr 1.05fr;gap:56px;align-items:center;}
+  .regroup-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-card);
+    padding:28px;
+  }
+  .why-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:20px;}
+  .why-list li{display:flex;gap:16px;align-items:flex-start;}
+  .why-list .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:9px;
+    background:var(--ink);color:var(--white);display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:600;font-size:15px;
+  }
+  .why-list h3{font-size:17px;margin-bottom:4px;}
+  .why-list p{margin:0;font-size:15px;}
+
+  /* ---------- Agenda timeline ---------- */
+  .timeline{border-left:2px solid var(--line);margin-left:6px;}
+  .tl-item{position:relative;padding:0 0 34px 32px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:'';position:absolute;left:-7px;top:4px;
+    width:12px;height:12px;border-radius:50%;
+    background:var(--amber);border:3px solid var(--paper);
+    box-shadow:0 0 0 2px var(--amber);
+  }
+  .tl-time{font-weight:800;color:var(--ink);font-size:14.5px;letter-spacing:0.01em;}
+  .tl-title{font-family:'Fraunces',serif;font-size:19px;color:var(--ink);margin:4px 0 6px;}
+  .tl-desc{font-size:15px;max-width:56ch;}
+
+  /* ---------- Who / trust ---------- */
+  .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .trust-card{
+    background:var(--white);border:1px solid var(--line);
+    border-radius:var(--radius-card);padding:28px;
+  }
+  .trust-card .ico{width:38px;height:38px;margin-bottom:16px;}
+  .trust-card h3{font-size:17px;margin-bottom:8px;}
+  .trust-card p{font-size:14.5px;margin:0;}
+
+  /* ---------- Testimonials ---------- */
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);}
+  .testi{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 28px;}
+  .testi .mark{font-family:'Fraunces',serif;font-size:40px;color:var(--amber);line-height:0.6;display:block;margin-bottom:10px;}
+  .testi p{font-size:15.5px;color:var(--ink-soft);margin:0 0 16px;}
+  .testi .who{font-size:13.5px;font-weight:700;color:var(--ink);}
+
+  /* ---------- Details / register ---------- */
+  .details{background:var(--ink);color:#D9DEEC;border-radius:28px;padding:52px;}
+  .details-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;}
+  .details h2{color:var(--white);font-size:clamp(26px,3vw,32px);}
+  .details .sub{color:#B7BEDA;margin-top:10px;font-size:15.5px;}
+  .fact-list{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-direction:column;gap:14px;}
+  .fact-list li{display:flex;gap:14px;align-items:baseline;font-size:15px;}
+  .fact-list b{color:var(--white);min-width:88px;font-weight:800;font-size:13px;letter-spacing:0.03em;}
+  .seat-card{background:#28325A;border-radius:20px;padding:30px;text-align:center;}
+  .seat-num{font-family:'Fraunces',serif;font-size:56px;color:var(--amber);line-height:1;}
+  .seat-card p{margin:8px 0 24px;color:#C7CEE8;font-size:14.5px;}
+  .details .btn-primary{width:100%;justify-content:center;}
+  .details .contact-line{margin-top:14px;font-size:13px;color:#9BA4C6;text-align:center;}
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:760px;}
+  details.faq-item{border-bottom:1px solid var(--line);padding:20px 0;}
+  details.faq-item summary{
+    cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;
+    font-family:'Fraunces',serif;font-size:17.5px;color:var(--ink);font-weight:600;
+  }
+  details.faq-item summary::-webkit-details-marker{display:none;}
+  details.faq-item summary::after{content:'+';font-family:'Manrope',sans-serif;font-size:22px;color:var(--coral);flex:0 0 auto;}
+  details.faq-item[open] summary::after{content:'–';}
+  details.faq-item p{margin:14px 0 0;font-size:15px;max-width:60ch;}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line);padding:44px 0 30px;}
+  .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:flex-start;}
+  .footer-note{font-size:13.5px;color:#8A8574;max-width:40ch;}
+  .footer-links{display:flex;gap:26px;font-size:14px;font-weight:600;}
+  .footer-links a{text-decoration:none;}
+  .foot-bottom{margin-top:34px;font-size:12.5px;color:#A69F8D;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  @media (max-width:900px){
+    .hero .wrap, .why-grid, .details-grid{grid-template-columns:1fr;}
+    .why-grid .illustration{order:-1;}
+    .trust-grid, .testi-grid{grid-template-columns:1fr;}
+    .testi{border-right:1px solid var(--line);}
+    .details{padding:34px 22px;border-radius:20px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <a class="brand" href="#top">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="14" width="26" height="16" rx="4" fill="#F4A825"/>
+        <circle cx="17" cy="6" r="5" fill="#1E2749"/>
+      </svg>
+      <span class="brand-word"><b>iOTA</b><span>MATHS ACADEMY</span></span>
+    </a>
+    <nav class="links">
+      <a href="#why">Why it matters</a>
+      <a href="#agenda">The workshop</a>
+      <a href="#details">Details</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-small" href="#details">Reserve a seat</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1 class="hook">The <em>“3”</em> in 30 isn't the same as the “3” in 3 — until a child feels that, every sum after it is guesswork.</h1>
+        <p class="lede">Addition with carrying, subtraction with borrowing, comparing numbers, even reading a clock — all of it rests on one idea: place value. iOTA's Ones &amp; Tens workshop gives Grade 1 &amp; 2 children a hands-on, visual grip on the concept their entire maths future is built on.</p>
+        <div class="meta-row">
+          <span class="pill"><span class="dot"></span>Sunday, 20 September</span>
+          <span class="pill"><span class="dot"></span>4:00 – 7:00 PM</span>
+          <span class="pill"><span class="dot"></span>Grades 1 &amp; 2 · Ages 6–8</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#details">Reserve your child's seat</a>
+          <a class="btn btn-ghost" href="#agenda">See what happens in 3 hours</a>
+        </div>
+        <p class="countdown" id="countdown"></p>
+      </div>
+
+      <div class="illustration">
+        <svg viewBox="0 0 360 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Base-ten blocks showing the number 24: two tens rods and four ones cubes">
+          <!-- tens rods -->
+          <g>
+            <rect x="30" y="40" width="26" height="200" rx="4" fill="#1E2749"/>
+            <line x1="30" y1="60" x2="56" y2="60" stroke="#3A4670" stroke-width="1"/>
+            <line x1="30" y1="80" x2="56" y2="80" stroke="#3A4670" stroke-width="1"/>
+            <line x1="30" y1="100" x2="56" y2="100" stroke="#3A4670" stroke-width="1"/>
+            <line x1="30" y1="120" x2="56" y2="120" stroke="#3A4670" stroke-width="1"/>
+            <line x1="30" y1="140" x2="56" y2="140" stroke="#3A4670" stroke-width="1"/>
+            <line x1="30" y1="160" x2="56" y2="160" stroke="#3A4670" stroke-width="1"/>
+            <line x1="30" y1="180" x2="56" y2="180" stroke="#3A4670" stroke-width="1"/>
+            <line x1="30" y1="200" x2="56" y2="200" stroke="#3A4670" stroke-width="1"/>
+            <line x1="30" y1="220" x2="56" y2="220" stroke="#3A4670" stroke-width="1"/>
+          </g>
+          <g>
+            <rect x="76" y="40" width="26" height="200" rx="4" fill="#1E2749"/>
+            <line x1="76" y1="60" x2="102" y2="60" stroke="#3A4670" stroke-width="1"/>
+            <line x1="76" y1="80" x2="102" y2="80" stroke="#3A4670" stroke-width="1"/>
+            <line x1="76" y1="100" x2="102" y2="100" stroke="#3A4670" stroke-width="1"/>
+            <line x1="76" y1="120" x2="102" y2="120" stroke="#3A4670" stroke-width="1"/>
+            <line x1="76" y1="140" x2="102" y2="140" stroke="#3A4670" stroke-width="1"/>
+            <line x1="76" y1="160" x2="102" y2="160" stroke="#3A4670" stroke-width="1"/>
+            <line x1="76" y1="180" x2="102" y2="180" stroke="#3A4670" stroke-width="1"/>
+            <line x1="76" y1="200" x2="102" y2="200" stroke="#3A4670" stroke-width="1"/>
+            <line x1="76" y1="220" x2="102" y2="220" stroke="#3A4670" stroke-width="1"/>
+          </g>
+          <!-- ones cubes -->
+          <rect x="140" y="200" width="34" height="34" rx="4" fill="#F4A825"/>
+          <rect x="182" y="200" width="34" height="34" rx="4" fill="#F4A825"/>
+          <rect x="140" y="242" width="34" height="34" rx="4" fill="#F4A825"/>
+          <rect x="182" y="242" width="34" height="34" rx="4" fill="#F4A825"/>
+          <!-- equation -->
+          <text x="248" y="130" font-family="Fraunces, serif" font-size="30" fill="#1E2749" font-weight="600">= 24</text>
+          <text x="30" y="20" font-family="Manrope, sans-serif" font-size="13" font-weight="700" fill="#1E2749">2 tens</text>
+          <text x="140" y="190" font-family="Manrope, sans-serif" font-size="13" font-weight="700" fill="#B5730E">4 ones</text>
+        </svg>
+        <div class="block-caption">
+          <span><span class="swatch" style="background:#1E2749"></span><span class="k">Tens rod</span> — worth 10 each</span>
+          <span><span class="swatch" style="background:#F4A825"></span><span class="k">Ones cube</span> — worth 1 each</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS -->
+  <section id="why" class="section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Why place value comes first</p>
+        <h2>Every later maths skill quietly assumes your child already has this.</h2>
+        <p>When a child doesn't yet see a two-digit number as “some tens plus some ones,” they fall back on memorising steps instead of understanding them — and that cracks under pressure.</p>
+      </div>
+      <div class="why-grid">
+        <div class="regroup-card">
+          <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="27 plus 15 regrouped into 4 tens and 2 ones, equalling 42">
+            <text x="10" y="35" font-family="Fraunces, serif" font-size="22" fill="#1E2749" font-weight="600">27 + 15</text>
+            <rect x="10" y="55" width="18" height="70" rx="3" fill="#1E2749"/>
+            <rect x="32" y="55" width="18" height="70" rx="3" fill="#1E2749"/>
+            <rect x="58" y="95" width="20" height="20" rx="3" fill="#F4A825"/>
+            <rect x="82" y="95" width="20" height="20" rx="3" fill="#F4A825"/>
+            <rect x="58" y="119" width="20" height="20" rx="3" fill="#F4A825"/>
+            <rect x="82" y="119" width="20" height="20" rx="3" fill="#F4A825"/>
+            <rect x="106" y="143" width="20" height="20" rx="3" fill="#F4A825"/>
+            <rect x="130" y="35" width="18" height="70" rx="3" fill="#1E2749"/>
+            <rect x="152" y="70" width="20" height="20" rx="3" fill="#F4A825"/>
+            <rect x="176" y="70" width="20" height="20" rx="3" fill="#F4A825"/>
+            <rect x="152" y="94" width="20" height="20" rx="3" fill="#F4A825"/>
+            <rect x="176" y="94" width="20" height="20" rx="3" fill="#F4A825"/>
+            <rect x="152" y="118" width="20" height="20" rx="3" fill="#F4A825"/>
+            <text x="205" y="120" font-family="Fraunces, serif" font-size="24" fill="#E85D4C" font-weight="600">10 ones</text>
+            <text x="205" y="145" font-family="Manrope, sans-serif" font-size="13" fill="#3A4256">trade for 1 new tens rod</text>
+            <text x="10" y="185" font-family="Fraunces, serif" font-size="22" fill="#1E2749" font-weight="600">= 4 tens, 2 ones → 42</text>
+          </svg>
+        </div>
+        <ul class="why-list">
+          <li>
+            <span class="num">+</span>
+            <div><h3>Addition with carrying</h3><p>27 + 15 only makes sense once a child knows ten ones can be traded for one ten — the “carry the 1” step, made visible instead of memorised.</p></div>
+          </li>
+          <li>
+            <span class="num">−</span>
+            <div><h3>Subtraction with borrowing</h3><p>Taking 8 away from 32 means breaking open a ten. Children who've handled real tens rods understand why, not just how.</p></div>
+          </li>
+          <li>
+            <span class="num">&gt;</span>
+            <div><h3>Comparing &amp; ordering numbers</h3><p>Knowing 41 is greater than 39 isn't about counting one by one — it's about reading tens first.</p></div>
+          </li>
+          <li>
+            <span class="num">₹</span>
+            <div><h3>Money, time &amp; measurement</h3><p>Ten-rupee notes, minutes on a clock, centimetres on a ruler — all group in tens the same way numbers do.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section id="agenda">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Sunday, 20 September · 4:00–7:00 PM</p>
+        <h2>Three hours, hands on real blocks — not a lecture.</h2>
+        <p>Every activity is built around actual manipulatives: base-ten blocks, place-value mats and number cards. Children build, trade and regroup with their hands before they ever do it on paper.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">4:00 – 4:20 PM</div>
+          <div class="tl-title">Warm-up: number stories</div>
+          <p class="tl-desc">Counting games and a quick pulse-check to see how each child currently thinks about two-digit numbers.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">4:20 – 5:00 PM</div>
+          <div class="tl-title">Build-a-number with base-ten blocks</div>
+          <p class="tl-desc">Children physically build numbers from tens rods and ones cubes, and read them back — “this is 3 tens and 6 ones, so it's 36.”</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">5:00 – 5:15 PM</div>
+          <div class="tl-title">Snack &amp; movement break</div>
+          <p class="tl-desc">A short reset — young attention spans get a real pause, not a screen.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">5:15 – 5:55 PM</div>
+          <div class="tl-title">The “Ten Trade” relay</div>
+          <p class="tl-desc">A team game where children physically trade ten ones cubes for a tens rod — the exact motion behind carrying and borrowing.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">5:55 – 6:30 PM</div>
+          <div class="tl-title">Place-value bingo &amp; practice sheet</div>
+          <p class="tl-desc">A playful check for understanding, plus a short worksheet children take home with their name and score.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">6:30 – 6:50 PM</div>
+          <div class="tl-title">Parent walkthrough</div>
+          <p class="tl-desc">Parents join for the last stretch: three simple games you can play at home with dal, coins or dice to keep the concept alive.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">6:50 – 7:00 PM</div>
+          <div class="tl-title">Certificates &amp; wrap-up</div>
+          <p class="tl-desc">Every child leaves with a certificate and a take-home block kit to keep practising.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Why parents trust iOTA</p>
+        <h2>A concept this foundational deserves a specialist, not a generalist.</h2>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-card">
+          <svg class="ico" viewBox="0 0 38 38"><rect x="6" y="6" width="26" height="26" rx="6" fill="#1E2749"/><rect x="13" y="13" width="6" height="6" fill="#F4A825"/><rect x="21" y="13" width="6" height="6" fill="#F4A825"/><rect x="13" y="21" width="6" height="6" fill="#F4A825"/><rect x="21" y="21" width="6" height="6" fill="#F4A825"/></svg>
+          <h3>Early-maths specialists</h3>
+          <p>Sessions are led by facilitators trained specifically in Grade 1–2 number sense, not general tutors covering every subject.</p>
+        </div>
+        <div class="trust-card">
+          <svg class="ico" viewBox="0 0 38 38"><circle cx="19" cy="19" r="14" fill="#F4A825"/><path d="M12 19l5 5 9-11" stroke="#1E2749" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>Curriculum-aligned</h3>
+          <p>Activities map directly to Grade 1–2 place-value outcomes, so what happens here reinforces what's taught in school.</p>
+        </div>
+        <div class="trust-card">
+          <svg class="ico" viewBox="0 0 38 38"><rect x="5" y="16" width="8" height="16" fill="#1E2749"/><rect x="15" y="10" width="8" height="22" fill="#E85D4C"/><rect x="25" y="4" width="8" height="28" fill="#F4A825"/></svg>
+          <h3>Small, hands-on groups</h3>
+          <p>Capped seats mean every child gets their own set of blocks and real facilitator attention — not a back row.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">From parents who've seen the shift</p>
+        <h2>The moment it clicks is hard to miss.</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi">
+          <span class="mark">“</span>
+          <p>My daughter used to add two-digit numbers by just guessing. A week after this kind of workshop, she was explaining “carrying” to me using coins on the dinner table.</p>
+          <div class="who">— Parent of a Grade 1 student</div>
+        </div>
+        <div class="testi">
+          <span class="mark">“</span>
+          <p>He'd memorised his addition facts but froze on anything above 20. Once he could see tens and ones as blocks, the freeze just disappeared.</p>
+          <div class="who">— Parent of a Grade 2 student</div>
+        </div>
+        <div class="testi">
+          <span class="mark">“</span>
+          <p>What I liked most was that we were shown exactly how to keep practising at home — it didn't end when the workshop did.</p>
+          <div class="who">— Parent of a Grade 1 student</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILS / REGISTER -->
+  <section id="details">
+    <div class="wrap">
+      <div class="details">
+        <div class="details-grid">
+          <div>
+            <h2>Reserve your child's seat</h2>
+            <p class="sub">Limited to 24 children per batch — one seat, one full set of blocks, one facilitator watching for the moment it clicks.</p>
+            <ul class="fact-list">
+              <li><b>DATE</b> Sunday, 20 September 2026</li>
+              <li><b>TIME</b> 4:00 PM – 7:00 PM</li>
+              <li><b>AGE</b> Grade 1 &amp; 2 (approx. 6–8 years)</li>
+              <li><b>VENUE</b> iOTA Maths Academy Learning Studio, Pune <em>(exact address on confirmation)</em></li>
+              <li><b>INCLUDES</b> Base-ten block kit, worksheets, snack &amp; certificate</li>
+              <li><b>FEE</b> ₹[amount] per child</li>
+            </ul>
+          </div>
+          <div class="seat-card">
+            <div class="seat-num">24</div>
+            <p>seats total, one for every child in the room</p>
+            <a class="btn btn-primary" href="mailto:hello@iotamaths.academy?subject=Reserve%20a%20seat%20-%20Ones%20%26%20Tens%20Workshop%20(20%20Sept)&body=Child's%20name%3A%0AGrade%3A%0AParent%20contact%20number%3A">Reserve your child's seat</a>
+            <p class="contact-line">Or WhatsApp us on [+91 XXXXX XXXXX]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Good to know</p>
+        <h2>Questions parents usually ask</h2>
+      </div>
+      <div class="faq">
+        <details class="faq-item" open>
+          <summary>My child finds maths stressful — will this help or add pressure?</summary>
+          <p>The whole session is built around games and physical blocks rather than worksheets or timed tests. Most children experience it as play; the maths understanding follows naturally from that.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What should we bring on the day?</summary>
+          <p>Just your child, comfortable clothes and a water bottle. All blocks, worksheets and stationery are provided as part of the fee.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is this a one-off workshop or part of a longer course?</summary>
+          <p>This is a standalone 3-hour workshop focused entirely on ones and tens. If your child enjoys it, we'll share details of iOTA's ongoing Grade 1–2 number sense program at the end.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do parents need to stay for the full 3 hours?</summary>
+          <p>You're welcome to stay throughout, or drop off and return by 6:30 PM for the parent walkthrough segment, which we'd encourage you not to miss.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What if we need to cancel or reschedule?</summary>
+          <p>Let us know at least 48 hours before the session on [contact number/email] and we'll move your child to the next available batch.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top">
+          <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="14" width="26" height="16" rx="4" fill="#F4A825"/>
+            <circle cx="17" cy="6" r="5" fill="#1E2749"/>
+          </svg>
+          <span class="brand-word"><b>iOTA</b><span>MATHS ACADEMY</span></span>
+        </a>
+        <p class="footer-note">Hands-on early-maths workshops for Grade 1–2 children, built around real manipulatives and small groups.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#why">Why it matters</a>
+        <a href="#agenda">The workshop</a>
+        <a href="#details">Reserve a seat</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>hello@iotamaths.academy · [+91 XXXXX XXXXX] · Pune, Maharashtra</span>
+      <span>© 2026 iOTA Maths Academy</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Simple, honest countdown to the workshop start
+  (function(){
+    var target = new Date("2026-09-20T16:00:00");
+    var el = document.getElementById("countdown");
+    function update(){
+      var now = new Date();
+      var diff = target - now;
+      if (diff <= 0) { el.textContent = "The workshop has started — see you there!"; return; }
+      var days = Math.floor(diff / (1000*60*60*24));
+      var hours = Math.floor((diff / (1000*60*60)) % 24);
+      el.textContent = days + " day" + (days === 1 ? "" : "s") + " and " + hours + " hour" + (hours === 1 ? "" : "s") + " until the workshop begins";
+    }
+    update();
+    setInterval(update, 60000);
+  })();
+</script>
+
+</body>
+</html>
