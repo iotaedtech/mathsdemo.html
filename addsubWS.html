@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Addition &amp; Subtraction Workshop — iOTA Maths Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1E2749;
+    --ink-soft:#3A4256;
+    --amber:#F4A825;
+    --amber-deep:#D98E12;
+    --coral:#E85D4C;
+    --sky:#EAF1FB;
+    --paper:#FFFDF9;
+    --line:#E4DFD3;
+    --white:#FFFFFF;
+    --radius-card:20px;
+    --radius-pill:999px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:'Manrope',sans-serif;color:var(--ink-soft);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.serif{font-family:'Fraunces',serif;color:var(--ink);margin:0;font-weight:600;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  img,svg{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:3px solid var(--coral);outline-offset:3px;}
+
+  header.site{position:sticky;top:0;z-index:50;background:rgba(255,253,249,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;max-width:var(--maxw);margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .brand-word{display:flex;flex-direction:column;line-height:1.1;}
+  .brand-word b{font-family:'Fraunces',serif;font-weight:600;font-size:19px;color:var(--ink);}
+  .brand-word span{font-size:10.5px;letter-spacing:0.09em;color:var(--amber-deep);font-weight:700;}
+  nav.links{display:flex;gap:30px;font-size:14.5px;font-weight:600;}
+  nav.links a{text-decoration:none;color:var(--ink-soft);border-bottom:2px solid transparent;padding-bottom:2px;}
+  nav.links a:hover{color:var(--ink);border-color:var(--amber);}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--radius-pill);font-weight:700;font-size:14.5px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;}
+  .btn-primary{background:var(--coral);color:var(--white);box-shadow:0 6px 18px rgba(232,93,76,0.35);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(232,93,76,0.4);}
+  .btn-ghost{background:transparent;border-color:var(--ink);color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--white);}
+  .btn-small{padding:9px 18px;font-size:13.5px;}
+  @media (max-width:860px){ nav.links{display:none;} }
+
+  .hero{padding:72px 0 56px;}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;}
+  .hook{font-size:clamp(30px,3.8vw,44px);line-height:1.18;}
+  .hook em{font-style:normal;color:var(--coral);}
+  .lede{margin-top:20px;font-size:17.5px;max-width:48ch;color:var(--ink-soft);}
+  .meta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;}
+  .pill{display:flex;align-items:center;gap:8px;background:var(--sky);border:1px solid #D6E3F7;padding:9px 16px;border-radius:var(--radius-pill);font-size:14px;font-weight:700;color:var(--ink);}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--coral);}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;align-items:center;}
+  .countdown{margin-top:18px;font-size:13.5px;color:var(--amber-deep);font-weight:700;}
+
+  .num-caption{display:flex;justify-content:center;gap:30px;margin-top:10px;font-size:13px;font-weight:700;color:var(--ink-soft);flex-wrap:wrap;}
+  .swatch{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:middle;}
+
+  section{padding:76px 0;}
+  .section-alt{background:var(--sky);}
+  .kicker{font-size:14px;font-weight:700;color:var(--coral);margin-bottom:10px;}
+  .section-head{max-width:660px;margin-bottom:44px;}
+  .section-head h2{font-size:clamp(26px,3vw,34px);line-height:1.25;}
+  .section-head p{margin-top:14px;font-size:16px;}
+
+  .why-grid{display:grid;grid-template-columns:0.95fr 1.05fr;gap:56px;align-items:center;}
+  .fact-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-card);padding:28px;}
+  .why-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:20px;}
+  .why-list li{display:flex;gap:16px;align-items:flex-start;}
+  .why-list .num{flex:0 0 auto;width:34px;height:34px;border-radius:9px;background:var(--ink);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;font-size:15px;}
+  .why-list h3{font-size:17px;margin-bottom:4px;}
+  .why-list p{margin:0;font-size:15px;}
+
+  /* Two-track agenda for the wider grade band */
+  .track-tabs{display:flex;gap:10px;margin-bottom:30px;}
+  .track-tab{padding:10px 20px;border-radius:var(--radius-pill);border:2px solid var(--line);background:var(--white);font-weight:700;font-size:14px;cursor:pointer;color:var(--ink-soft);}
+  .track-tab.active{border-color:var(--ink);background:var(--ink);color:var(--white);}
+  .track-panel{display:none;}
+  .track-panel.active{display:block;}
+  .timeline{border-left:2px solid var(--line);margin-left:6px;}
+  .tl-item{position:relative;padding:0 0 30px 32px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{content:'';position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--amber);border:3px solid var(--paper);box-shadow:0 0 0 2px var(--amber);}
+  .tl-time{font-weight:800;color:var(--ink);font-size:14.5px;}
+  .tl-title{font-family:'Fraunces',serif;font-size:18.5px;color:var(--ink);margin:4px 0 6px;}
+  .tl-desc{font-size:15px;max-width:58ch;}
+
+  .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .trust-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-card);padding:28px;}
+  .trust-card .ico{width:38px;height:38px;margin-bottom:16px;}
+  .trust-card h3{font-size:17px;margin-bottom:8px;}
+  .trust-card p{font-size:14.5px;margin:0;}
+
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);}
+  .testi{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 28px;}
+  .testi .mark{font-family:'Fraunces',serif;font-size:40px;color:var(--amber);line-height:0.6;display:block;margin-bottom:10px;}
+  .testi p{font-size:15.5px;color:var(--ink-soft);margin:0 0 16px;}
+  .testi .who{font-size:13.5px;font-weight:700;color:var(--ink);}
+
+  .details{background:var(--ink);color:#D9DEEC;border-radius:28px;padding:52px;}
+  .details-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;}
+  .details h2{color:var(--white);font-size:clamp(26px,3vw,32px);}
+  .details .sub{color:#B7BEDA;margin-top:10px;font-size:15.5px;}
+  .fact-list{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-direction:column;gap:14px;}
+  .fact-list li{display:flex;gap:14px;align-items:baseline;font-size:15px;}
+  .fact-list b{color:var(--white);min-width:88px;font-weight:800;font-size:13px;letter-spacing:0.03em;}
+  .seat-card{background:#28325A;border-radius:20px;padding:30px;text-align:center;}
+  .seat-num{font-family:'Fraunces',serif;font-size:56px;color:var(--amber);line-height:1;}
+  .seat-card p{margin:8px 0 24px;color:#C7CEE8;font-size:14.5px;}
+  .details .btn-primary{width:100%;justify-content:center;}
+  .details .contact-line{margin-top:14px;font-size:13px;color:#9BA4C6;text-align:center;}
+
+  .faq{max-width:760px;}
+  details.faq-item{border-bottom:1px solid var(--line);padding:20px 0;}
+  details.faq-item summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-family:'Fraunces',serif;font-size:17.5px;color:var(--ink);font-weight:600;}
+  details.faq-item summary::-webkit-details-marker{display:none;}
+  details.faq-item summary::after{content:'+';font-family:'Manrope',sans-serif;font-size:22px;color:var(--coral);flex:0 0 auto;}
+  details.faq-item[open] summary::after{content:'–';}
+  details.faq-item p{margin:14px 0 0;font-size:15px;max-width:60ch;}
+
+  footer{border-top:1px solid var(--line);padding:44px 0 30px;}
+  .footer-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:flex-start;}
+  .footer-note{font-size:13.5px;color:#8A8574;max-width:40ch;}
+  .footer-links{display:flex;gap:26px;font-size:14px;font-weight:600;}
+  .footer-links a{text-decoration:none;}
+  .foot-bottom{margin-top:34px;font-size:12.5px;color:#A69F8D;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  @media (max-width:900px){
+    .hero .wrap, .why-grid, .details-grid{grid-template-columns:1fr;}
+    .why-grid .fact-card{order:-1;}
+    .trust-grid, .testi-grid{grid-template-columns:1fr;}
+    .details{padding:34px 22px;border-radius:20px;}
+    .track-tabs{flex-wrap:wrap;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <a class="brand" href="#top">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="14" width="26" height="16" rx="4" fill="#F4A825"/>
+        <circle cx="17" cy="6" r="5" fill="#1E2749"/>
+      </svg>
+      <span class="brand-word"><b>iOTA</b><span>MATHS ACADEMY</span></span>
+    </a>
+    <nav class="links">
+      <a href="#why">Why it matters</a>
+      <a href="#agenda">The workshop</a>
+      <a href="#details">Details</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-small" href="#details">Reserve a seat</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1 class="hook">Multiplication is repeated addition. Division is repeated subtraction. <em>Get these two right</em>, and half of maths solves itself.</h1>
+        <p class="lede">Every operation your child will ever learn — times tables, long division, fractions, even algebra — is addition and subtraction wearing a different hat. iOTA's workshop builds real number fluency for Grades 1–4, so the next four years of maths feel like an extension, not a wall.</p>
+        <div class="meta-row">
+          <span class="pill"><span class="dot"></span>Sunday, 20 September</span>
+          <span class="pill"><span class="dot"></span>4:00 – 7:00 PM</span>
+          <span class="pill"><span class="dot"></span>Grades 1–4 · Ages 6–10</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#details">Reserve your child's seat</a>
+          <a class="btn btn-ghost" href="#agenda">See what happens in 3 hours</a>
+        </div>
+        <p class="countdown" id="countdown"></p>
+      </div>
+
+      <div class="illustration">
+        <svg viewBox="0 0 380 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A number line showing 8 plus 5 equals 13 as a forward jump, and 13 minus 5 equals 8 as a backward jump">
+          <line x1="20" y1="150" x2="360" y2="150" stroke="#1E2749" stroke-width="3"/>
+          <!-- ticks 0-14 -->
+          <g font-family="Manrope, sans-serif" font-size="12" fill="#3A4256">
+            <!-- generate ticks -->
+            <g id="ticks"></g>
+          </g>
+          <!-- forward jump 8 -> 13 -->
+          <path d="M 214 150 Q 260 70 306 150" stroke="#F4A825" stroke-width="3" fill="none" marker-end="url(#arrowAmber)"/>
+          <text x="230" y="60" font-family="Fraunces, serif" font-size="18" fill="#B5730E" font-weight="600">+5</text>
+          <!-- backward jump 13 -> 8 -->
+          <path d="M 306 150 Q 260 220 214 150" stroke="#E85D4C" stroke-width="3" fill="none" marker-end="url(#arrowCoral)"/>
+          <text x="245" y="205" font-family="Fraunces, serif" font-size="18" fill="#E85D4C" font-weight="600">−5</text>
+          <defs>
+            <marker id="arrowAmber" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#F4A825"/>
+            </marker>
+            <marker id="arrowCoral" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#E85D4C"/>
+            </marker>
+          </defs>
+          <script><![CDATA[]]></script>
+        </svg>
+        <svg viewBox="0 0 380 40" xmlns="http://www.w3.org/2000/svg" style="margin-top:-40px" aria-hidden="true">
+          <g font-family="Manrope, sans-serif" font-size="12" fill="#3A4256" font-weight="700">
+            <text x="14" y="20">0</text><text x="34" y="20">1</text><text x="54" y="20">2</text><text x="74" y="20">3</text><text x="94" y="20">4</text><text x="114" y="20">5</text><text x="134" y="20">6</text><text x="154" y="20">7</text>
+            <text x="172" y="20" fill="#1E2749">8</text><text x="194" y="20">9</text><text x="212" y="20">10</text><text x="232" y="20">11</text><text x="252" y="20">12</text>
+            <text x="270" y="20" fill="#1E2749">13</text><text x="290" y="20">14</text><text x="310" y="20">15</text>
+          </g>
+        </svg>
+        <div class="num-caption">
+          <span><span class="swatch" style="background:#F4A825"></span>8 + 5 = 13 — jump forward to add</span>
+          <span><span class="swatch" style="background:#E85D4C"></span>13 − 5 = 8 — jump back to subtract</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS -->
+  <section id="why" class="section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Why addition &amp; subtraction come first</p>
+        <h2>Almost every maths topic your child meets next is one of these two, in disguise.</h2>
+        <p>A child who is fluent — not just accurate, but fast and confident — with addition and subtraction has a head start on everything from times tables to word problems to mental maths under exam pressure.</p>
+      </div>
+      <div class="why-grid">
+        <div class="fact-card">
+          <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fact family triangle showing 8, 5 and 13 connected by addition and subtraction">
+            <polygon points="150,20 30,190 270,190" fill="none" stroke="#1E2749" stroke-width="3"/>
+            <circle cx="150" cy="20" r="26" fill="#1E2749"/>
+            <text x="150" y="27" text-anchor="middle" font-family="Fraunces, serif" font-size="20" fill="#FFFDF9" font-weight="600">13</text>
+            <circle cx="30" cy="190" r="26" fill="#F4A825"/>
+            <text x="30" y="197" text-anchor="middle" font-family="Fraunces, serif" font-size="20" fill="#1E2749" font-weight="600">8</text>
+            <circle cx="270" cy="190" r="26" fill="#F4A825"/>
+            <text x="270" y="197" text-anchor="middle" font-family="Fraunces, serif" font-size="20" fill="#1E2749" font-weight="600">5</text>
+            <text x="150" y="220" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" fill="#3A4256" font-weight="700">8+5=13 · 5+8=13 · 13−5=8 · 13−8=5</text>
+          </svg>
+        </div>
+        <ul class="why-list">
+          <li>
+            <span class="num">×</span>
+            <div><h3>Multiplication tables</h3><p>3 × 4 is genuinely just 4 + 4 + 4. Children who add fluently learn times tables faster because they can verify, not just recite.</p></div>
+          </li>
+          <li>
+            <span class="num">÷</span>
+            <div><h3>Division</h3><p>Sharing 20 sweets among 4 friends is repeated subtraction — take away 4 groups until nothing's left. It only feels natural if subtraction already does.</p></div>
+          </li>
+          <li>
+            <span class="num">?</span>
+            <div><h3>Word problems</h3><p>Most Grade 1–4 word problems fail not because a child can't calculate, but because they can't tell if it's an addition or subtraction problem. We teach both, side by side.</p></div>
+          </li>
+          <li>
+            <span class="num">⏱</span>
+            <div><h3>Speed under pressure</h3><p>Timed tests and mental maths rounds reward fluency, not just correctness. We build both through games, not drills.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDA: two tracks for the wider grade band -->
+  <section id="agenda">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Sunday, 20 September · 4:00–7:00 PM</p>
+        <h2>One workshop, two skill tracks — every child works at the right edge of their ability.</h2>
+        <p>Grades 1–4 don't learn addition and subtraction the same way, so children split into two age-matched groups for the hands-on blocks, then come back together for games and the parent session.</p>
+      </div>
+
+      <div class="track-tabs" role="tablist">
+        <button class="track-tab active" id="tab-junior" onclick="showTrack('junior')">Grades 1–2 track</button>
+        <button class="track-tab" id="tab-senior" onclick="showTrack('senior')">Grades 3–4 track</button>
+      </div>
+
+      <div class="track-panel active" id="panel-junior">
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">4:00 – 4:20 PM</div><div class="tl-title">Number line warm-up</div><p class="tl-desc">Hopping forward and back on a giant floor number line — the physical version of the diagram above.</p></div>
+          <div class="tl-item"><div class="tl-time">4:20 – 5:00 PM</div><div class="tl-title">Fact families with counters</div><p class="tl-desc">Children build 8+5=13 and its three related facts with counters, seeing addition and subtraction as two sides of one relationship.</p></div>
+          <div class="tl-item"><div class="tl-time">5:00 – 5:15 PM</div><div class="tl-title">Snack break</div><p class="tl-desc">A short, screen-free reset.</p></div>
+          <div class="tl-item"><div class="tl-time">5:15 – 5:55 PM</div><div class="tl-title">"Race to 20" dice game</div><p class="tl-desc">A fast-paced addition and subtraction relay that keeps score in a child's head, building speed without a worksheet in sight.</p></div>
+          <div class="tl-item"><div class="tl-time">5:55 – 6:30 PM</div><div class="tl-title">Story problems in pairs</div><p class="tl-desc">Simple word problems solved together, with a focus on deciding "add or subtract?" before reaching for a pencil.</p></div>
+        </div>
+      </div>
+
+      <div class="track-panel" id="panel-senior">
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-time">4:00 – 4:20 PM</div><div class="tl-title">Mental maths sprint</div><p class="tl-desc">A quick diagnostic round of two-digit and three-digit sums, done in the head, to find each child's current speed.</p></div>
+          <div class="tl-item"><div class="tl-time">4:20 – 5:00 PM</div><div class="tl-title">Regrouping across three digits</div><p class="tl-desc">Multi-digit addition and subtraction with carrying and borrowing, using place-value charts to make every trade visible.</p></div>
+          <div class="tl-item"><div class="tl-time">5:00 – 5:15 PM</div><div class="tl-title">Snack break</div><p class="tl-desc">A short, screen-free reset.</p></div>
+          <div class="tl-item"><div class="tl-time">5:15 – 5:55 PM</div><div class="tl-title">Multiplication &amp; division bridge</div><p class="tl-desc">Seeing 6×7 as repeated addition and 42÷7 as repeated subtraction, connecting today's session to what's coming next in class.</p></div>
+          <div class="tl-item"><div class="tl-time">5:55 – 6:30 PM</div><div class="tl-title">Two-step word problems</div><p class="tl-desc">Problems that mix addition and subtraction in one question — the exact style that trips up this age group in school tests.</p></div>
+        </div>
+      </div>
+
+      <div class="timeline" style="margin-top:6px;">
+        <div class="tl-item"><div class="tl-time">6:30 – 6:50 PM</div><div class="tl-title">Parent walkthrough (both groups)</div><p class="tl-desc">Three quick games you can play at home with dice, cards or coins to keep fluency growing between sessions.</p></div>
+        <div class="tl-item"><div class="tl-time">6:50 – 7:00 PM</div><div class="tl-title">Certificates &amp; wrap-up</div><p class="tl-desc">Every child leaves with a certificate and a take-home practice pack matched to their track.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Why parents trust iOTA</p>
+        <h2>Four grade levels, one room — that only works with real expertise.</h2>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-card">
+          <svg class="ico" viewBox="0 0 38 38"><rect x="6" y="6" width="26" height="26" rx="6" fill="#1E2749"/><rect x="13" y="13" width="6" height="6" fill="#F4A825"/><rect x="21" y="13" width="6" height="6" fill="#F4A825"/><rect x="13" y="21" width="6" height="6" fill="#F4A825"/><rect x="21" y="21" width="6" height="6" fill="#F4A825"/></svg>
+          <h3>Grade-matched tracks</h3>
+          <p>Facilitators trained to run Grade 1–2 and Grade 3–4 groups in parallel, so no child is bored or lost.</p>
+        </div>
+        <div class="trust-card">
+          <svg class="ico" viewBox="0 0 38 38"><circle cx="19" cy="19" r="14" fill="#F4A825"/><path d="M12 19l5 5 9-11" stroke="#1E2749" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>Curriculum-aligned</h3>
+          <p>Every activity maps to school-level addition, subtraction and early multiplication/division outcomes.</p>
+        </div>
+        <div class="trust-card">
+          <svg class="ico" viewBox="0 0 38 38"><rect x="5" y="16" width="8" height="16" fill="#1E2749"/><rect x="15" y="10" width="8" height="22" fill="#E85D4C"/><rect x="25" y="4" width="8" height="28" fill="#F4A825"/></svg>
+          <h3>Small, hands-on groups</h3>
+          <p>Capped seats per track mean real one-on-one attention, not a lecture to a full hall.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">From parents who've seen the shift</p>
+        <h2>The moment it clicks is hard to miss.</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi">
+          <span class="mark">"</span>
+          <p>My son used to dread word problems entirely. Now he draws a quick number line before deciding whether to add or subtract — it's such a simple habit, and it works.</p>
+          <div class="who">— Parent of a Grade 2 student</div>
+        </div>
+        <div class="testi">
+          <span class="mark">"</span>
+          <p>She was memorising times tables without understanding them. Seeing 4×6 as four groups of six, built from addition she already knew, changed everything.</p>
+          <div class="who">— Parent of a Grade 4 student</div>
+        </div>
+        <div class="testi">
+          <span class="mark">"</span>
+          <p>Three-digit subtraction with borrowing was a nightly battle. The place-value charts from this kind of session finally made the "why" click for him.</p>
+          <div class="who">— Parent of a Grade 3 student</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILS / REGISTER -->
+  <section id="details">
+    <div class="wrap">
+      <div class="details">
+        <div class="details-grid">
+          <div>
+            <h2>Reserve your child's seat</h2>
+            <p class="sub">Two grade-matched tracks, 15 children per track — real attention, not a crowded hall.</p>
+            <ul class="fact-list">
+              <li><b>DATE</b> Sunday, 20 September 2026</li>
+              <li><b>TIME</b> 4:00 PM – 7:00 PM</li>
+              <li><b>GRADES</b> 1–4 (approx. 6–10 years), split into two tracks</li>
+              <li><b>VENUE</b> iOTA Maths Academy Learning Studio, Pune <em>(exact address on confirmation)</em></li>
+              <li><b>INCLUDES</b> Practice pack matched to your child's track, snack &amp; certificate</li>
+              <li><b>FEE</b> ₹[amount] per child</li>
+            </ul>
+          </div>
+          <div class="seat-card">
+            <div class="seat-num">30</div>
+            <p>seats total across both tracks, 15 per group</p>
+            <a class="btn btn-primary" href="mailto:hello@iotamaths.academy?subject=Reserve%20a%20seat%20-%20Addition%20%26%20Subtraction%20Workshop%20(20%20Sept)&body=Child's%20name%3A%0AGrade%3A%0AParent%20contact%20number%3A">Reserve your child's seat</a>
+            <p class="contact-line">Or WhatsApp us on [+91 XXXXX XXXXX]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Good to know</p>
+        <h2>Questions parents usually ask</h2>
+      </div>
+      <div class="faq">
+        <details class="faq-item" open>
+          <summary>How does the split between Grades 1–2 and 3–4 work?</summary>
+          <p>Children work in their age-matched track for the hands-on block (4:20–6:30 PM) so the challenge level is right for them, then everyone joins together for the parent walkthrough and certificates.</p>
+        </details>
+        <details class="faq-item">
+          <summary>My child is already fluent with basic addition — is this still useful?</summary>
+          <p>Yes. The Grade 3–4 track moves into multi-digit regrouping, mental maths speed and the multiplication/division bridge, which stays challenging even for confident children.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What should we bring on the day?</summary>
+          <p>Just your child, comfortable clothes and a water bottle. All materials, worksheets and stationery are included in the fee.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do parents need to stay for the full 3 hours?</summary>
+          <p>You're welcome to stay throughout, or drop off and return by 6:30 PM for the parent walkthrough, which we'd encourage you not to miss.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What if we need to cancel or reschedule?</summary>
+          <p>Let us know at least 48 hours before the session on [contact number/email] and we'll move your child to the next available batch.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top">
+          <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="14" width="26" height="16" rx="4" fill="#F4A825"/>
+            <circle cx="17" cy="6" r="5" fill="#1E2749"/>
+          </svg>
+          <span class="brand-word"><b>iOTA</b><span>MATHS ACADEMY</span></span>
+        </a>
+        <p class="footer-note">Hands-on maths workshops for Grade 1–4 children, built around real fluency, not memorisation.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#why">Why it matters</a>
+        <a href="#agenda">The workshop</a>
+        <a href="#details">Reserve a seat</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>hello@iotamaths.academy · [+91 XXXXX XXXXX] · Pune, Maharashtra</span>
+      <span>© 2026 iOTA Maths Academy</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var target = new Date("2026-09-20T16:00:00");
+    var el = document.getElementById("countdown");
+    function update(){
+      var now = new Date();
+      var diff = target - now;
+      if (diff <= 0) { el.textContent = "The workshop has started — see you there!"; return; }
+      var days = Math.floor(diff / (1000*60*60*24));
+      var hours = Math.floor((diff / (1000*60*60)) % 24);
+      el.textContent = days + " day" + (days === 1 ? "" : "s") + " and " + hours + " hour" + (hours === 1 ? "" : "s") + " until the workshop begins";
+    }
+    update();
+    setInterval(update, 60000);
+  })();
+
+  function showTrack(which){
+    document.getElementById('panel-junior').classList.toggle('active', which === 'junior');
+    document.getElementById('panel-senior').classList.toggle('active', which === 'senior');
+    document.getElementById('tab-junior').classList.toggle('active', which === 'junior');
+    document.getElementById('tab-senior').classList.toggle('active', which === 'senior');
+  }
+</script>
+
+</body>
+</html>
